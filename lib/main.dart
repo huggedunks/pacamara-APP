@@ -1,3 +1,4 @@
+import 'package:awesome_extensions/awesome_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:pacamara_app/presentation/common/theme/theme_constants.dart';
 import 'package:pacamara_app/presentation/common/theme/theme_manager.dart';
@@ -45,19 +46,20 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).pacaAccent300,
+        backgroundColor: context.theme.pacaAccent500,
         title: Text(widget.title),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
+            Text(
               'You have pushed the button this many times:',
+              style: context.textTheme.titleSmall,
             ),
             Text(
               '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+              style: context.textTheme.headlineMedium,
             ),
           ],
         ),
