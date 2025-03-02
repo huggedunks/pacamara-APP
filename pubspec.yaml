@@ -39,6 +39,7 @@ dependencies:
   freezed: ^2.5.7
   freezed_annotation: ^2.4.4
   awesome_extensions: 2.0.13
+  riverpod_infinite_scroll_pagination: ^1.0.3
 
 dev_dependencies:
   flutter_test:
