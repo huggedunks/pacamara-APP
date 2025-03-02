@@ -1,12 +1,23 @@
 import 'package:awesome_extensions/awesome_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:pacamara_app/presentation/common/theme/theme_constants.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pacamara_app/presentation/memo_list/viewModel/memo_list_view_action.dart';
+import 'package:pacamara_app/presentation/memo_list/viewModel/memo_list_view_model.dart';
 
-class MemoListView extends StatelessWidget {
+class MemoListView extends ConsumerWidget {
   const MemoListView({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    ref.listen(memoListViewActionProvider, (_, action) {
+      switch (action.runtimeType) {
+        case const (MemoListViewActionShowToastMessage):
+          action as MemoListViewActionShowToastMessage;
+        // DO ACTION
+      }
+    });
+
     return Scaffold(
       backgroundColor: context.theme.pacaBlack,
       appBar: AppBar(
@@ -22,7 +33,9 @@ class MemoListView extends StatelessWidget {
           itemCount: 5,
           itemBuilder: (context, index) {
             return TextButton(
-              onPressed: () {},
+              onPressed: () {
+                ref.read(memoListViewModelProvider).buttonPressed(index);
+              },
               style: TextButton.styleFrom(
                 shape: const RoundedRectangleBorder(),
                 padding: const EdgeInsets.symmetric(vertical: 4.0),

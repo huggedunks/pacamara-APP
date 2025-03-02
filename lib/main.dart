@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pacamara_app/presentation/common/theme/theme_constants.dart';
 import 'package:pacamara_app/presentation/common/theme/theme_manager.dart';
 import 'package:pacamara_app/presentation/memo_list/view/memo_list_view.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    const ProviderScope(
+      child: MyApp(),
+    ),
+  );
 }
 
 ThemeManager themeManager = ThemeManager();
