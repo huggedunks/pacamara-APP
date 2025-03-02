@@ -42,8 +42,7 @@ class MemoListView extends ConsumerWidget {
                 const MemoListCell(),
               ],
             ),
-            pagedBuilder: (controller, builder) =>
-                PagedListView(pagingController: controller, builderDelegate: builder),
+            pagedBuilder: (controller, builder) => PagedListView(pagingController: controller, builderDelegate: builder),
           );
         }),
       ),

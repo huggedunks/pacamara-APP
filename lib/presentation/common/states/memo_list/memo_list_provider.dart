@@ -34,5 +34,4 @@ class MemoListNotifier extends PagedNotifier<int, MemoEntity> {
 }
 
 //create a global provider as you would normally in riverpod:
-final memoListProvider =
-    StateNotifierProvider<MemoListNotifier, PagedState<int, MemoEntity>>((_) => MemoListNotifier());
+final memoListProvider = StateNotifierProvider<MemoListNotifier, PagedState<int, MemoEntity>>((_) => MemoListNotifier());
