@@ -1,4 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pacamara_app/dependency/memo_list/memo_list_provider.dart';
+import 'package:pacamara_app/domain/usecase/memo_list/get_memo_list_usecase.dart';
 import 'package:riverpod_infinite_scroll/riverpod_infinite_scroll.dart';
 
 class MemoEntity {
@@ -7,17 +9,16 @@ class MemoEntity {
 }
 
 class MemoListNotifier extends PagedNotifier<int, MemoEntity> {
-  MemoListNotifier()
-      : super(
+  // ignore: unused_field
+  final GetMemoListUsecase _getMemoListUsecase;
+
+  MemoListNotifier(
+    this._getMemoListUsecase,
+  ) : super(
           //load is a required method of PagedNotifier
-          load: (page, limit) => Future.delayed(const Duration(seconds: 2), () {
-            // This simulates a network call to an api that returns paginated posts
-            return [
-              MemoEntity(1),
-              MemoEntity(2),
-              MemoEntity(3),
-            ];
-          }),
+          load: (page, limit) {
+            return _getMemoListUsecase(GetMemoListUsecaseParam(page));
+          },
 
           //nextPageKeyBuilder is a required method of PagedNotifier
           nextPageKeyBuilder: NextPageKeyBuilderDefault.mysqlPagination,
@@ -34,4 +35,8 @@ class MemoListNotifier extends PagedNotifier<int, MemoEntity> {
 }
 
 //create a global provider as you would normally in riverpod:
-final memoListProvider = StateNotifierProvider<MemoListNotifier, PagedState<int, MemoEntity>>((_) => MemoListNotifier());
+final memoListProvider = StateNotifierProvider<MemoListNotifier, PagedState<int, MemoEntity>>(
+  (ref) => MemoListNotifier(
+    ref.watch(getMemoListUsecaseProvider),
+  ),
+);
