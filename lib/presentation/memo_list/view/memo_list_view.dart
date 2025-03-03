@@ -35,6 +35,7 @@ class MemoListView extends ConsumerWidget {
         child: Consumer(builder: (context, ref, _) {
           return RiverPagedBuilder<int, MemoEntity>(
             firstPageKey: 0,
+            limit: 3,
             provider: memoListProvider,
             itemBuilder: (context, item, index) => Column(
               children: [
@@ -42,7 +43,10 @@ class MemoListView extends ConsumerWidget {
                 const MemoListCell(),
               ],
             ),
-            pagedBuilder: (controller, builder) => PagedListView(pagingController: controller, builderDelegate: builder),
+            pagedBuilder: (controller, builder) => PagedListView(
+              pagingController: controller,
+              builderDelegate: builder,
+            ),
           );
         }),
       ),
