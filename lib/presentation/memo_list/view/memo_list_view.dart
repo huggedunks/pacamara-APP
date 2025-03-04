@@ -5,6 +5,7 @@ import 'package:pacamara_app/presentation/common/components/memo_list_cell.dart'
 import 'package:pacamara_app/presentation/common/states/memo_list/memo_list_provider.dart';
 import 'package:pacamara_app/presentation/common/theme/theme_constants.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pacamara_app/presentation/memo_edit/view/memo_edit_view.dart';
 import 'package:pacamara_app/presentation/memo_list/viewModel/memo_list_view_action.dart';
 import 'package:riverpod_infinite_scroll/riverpod_infinite_scroll.dart';
 
@@ -61,7 +62,9 @@ class MemoListView extends ConsumerWidget {
                 Icons.edit_square,
                 color: context.theme.pacaAccent500,
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const MemoEditView()));
+              },
             )
           ],
         ),
